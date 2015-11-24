@@ -1,38 +1,36 @@
 import os
 
 def main():
-	#make lists
-	lists = []
-	listl = []
-	readf(lists, listl)
-	#print lists
-	for i in lists:
-		print(i)
-	#pick a list
-	lsize = input("""What list do you want to search?
-		(0) small
-		(1) large
-	""")
+	testfile = input("""Welcome to Zi Zhou Feature Seletion Algorithm
+	Type in the name of the file to test: """)
+	algonum = input("""Type the number of the algorithm you want to run.
 
-	if lsize == 0:
-		data = lists
-	else:
-		data = listl
+	1) Forward Selection
+	2) Backward Elimination
+	3) Zi's Special Algorithm
+	""")
+	#make lists
+	data = []
+	readf(data, testfile)
+
+	#print lists
+	for i in data:
+		print(i)
+	
+	print("""The data has 
+	{} features (not including class attribute
+	{} instances """.format(len(data[1]) - 1, len(data)))
 	search(data)
 	
 
-#readf takes two lists 
-#read in csfile large and cs file small into two lists
-def readf(lists, listl):
-	fl = open(os.path.join("/home/loli/Documents/projects/dataSetSearch/cs170data", "cs_170_large73.txt"))
-	fs = open(os.path.join("/home/loli/Documents/projects/dataSetSearch/cs170data", "cs_170_small73.txt"))
+#readf takes a list and a file name
+#reads data from the file into the list
+def readf(data, testfile):
+	f = open(os.path.join("/home/loli/Documents/projects/dataSetSearch/cs170data", testfile))
 	
-	for line in fs:
-		i = fs.readline().split()
-		lists.append(list(map(float, i)))
-	for line in fl:
-		i = fl.readline().split()
-		listl.append(list(map(float, i)))
+	for line in f:
+		i = line.split()
+		data.append(list(map(float, i)))
 
 #search takes in one list
 #searches through features to find the best matches
