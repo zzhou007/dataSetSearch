@@ -1,11 +1,25 @@
 import os
 
 def main():
+	#make lists
 	lists = []
 	listl = []
 	readf(lists, listl)
+	#print lists
 	for i in lists:
 		print(i)
+	#pick a list
+	lsize = input("""What list do you want to search?
+		(0) small
+		(1) large
+	""")
+
+	if lsize == 0:
+		data = lists
+	else:
+		data = listl
+	search(data)
+	
 
 #readf takes two lists 
 #read in csfile large and cs file small into two lists
@@ -19,6 +33,12 @@ def readf(lists, listl):
 	for line in fl:
 		i = fl.readline().split()
 		listl.append(list(map(float, i)))
+
+#search takes in one list
+#searches through features to find the best matches
+#prints the best match and percentage
+def search(data):
+	pass	
 
 
 main()
