@@ -71,9 +71,15 @@ def forward(data):
 		i += 1
 		print()
 
-					
+def backward(data): 
+	#size of the tree
+	treesize = len(data[1]) - 1
+	#to hold removed features
+	remSet = []
+	
 				
-
+def special(data):
+	pass
 			
 #input data list, the features already added and the new feature to test
 #returns the accuracy of the data
