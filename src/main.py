@@ -1,5 +1,7 @@
 import os
 import random
+import numpy
+import sys
 
 def main():
 	#testfile is the file name of the dataset in dir /cs170data in project file
@@ -12,10 +14,28 @@ def main():
 	2) Backward Elimination
 	3) Zi's Special Algorithm
 	""")
-	#make lists
+	#make lists and normalize
 	data = []
 	readf(data, testfile)
+	
+	#print lists
+	#for i in data:
+	#	print(i)
 
+	#normalize
+	print("""Please wait while I normalize the numbers ...""")
+	col = 0
+	while col != len(data[1]):
+		if col != 0:
+			tmp = []
+			for row in range(len(data)):
+				tmp.append(data[row][col])
+			tmp = normalize(tmp)
+			for row in range(len(data)):
+				data[row][col] = tmp[row]
+		col += 1
+	print("""Done""")
+	
 	#print lists
 	#for i in data:
 	#	print(i)
@@ -32,11 +52,23 @@ def main():
 		special(data)
 	else:
 		pass
+#input list
+#returns normalized list
+def normalize(set):
+	j = 0
+	for i in set:
+		set[j] = (set[j] - numpy.mean(set))/numpy.std(set)
+		j += 1
+	return set
 	
 #forward uses a forward search
 #takes a list of data 
 #prints step by step adding the best feature
 def forward(data):
+	#the one to print 
+	theone = 0
+	#the set to print 
+	theset = []
 	#size of the tree
 	treesize = len(data[1]) - 1
 	#to hold current features
@@ -58,17 +90,23 @@ def forward(data):
 				#get accuracy
 				v = validation(data, currSet, j)
 				print ("""checking set {} with feature {}. 
-					Accuracy is {}%""".format(currSet, j, v))
+					Accuracy is {}%""".format(currSet, j, v*100))
 				if v > best:
 					best = v
 					toAdd = j
 			j += 1
+		#set the one and the set
 		print("""Feature set {} has best accuracy at {}""".format(toAdd, best))
 		if prevAcc > best and i != 10:
 			print("""Warning accuracy has decreased, continuing in case of local maxima""")
 		prevAcc = best
 		currSet.append(toAdd)
+		if theone < best:
+			theone = best
+			theset.clear()
+			theset += currSet
 		i += 1
+		print("""The set {} has the overall best accuracy at {}% so far.""".format(theset, theone * 100))
 		print()
 
 def backward(data): 
@@ -84,9 +122,43 @@ def special(data):
 #input data list, the features already added and the new feature to test
 #returns the accuracy of the data
 def validation(data, currSet, j):
-	#test algorithms
-	return random.random()
-		
+	correct = 0
+	instances = len(data)
+	
+	#one point from data set
+	#for every instance
+	for row in range(len(data)):
+		p1 = []
+		#make data point
+		for i in currSet:
+			p1.append(data[row][i])
+		p1.append(data[row][j])
+		#test with all other data points
+		mindist = sys.maxsize
+		for row2 in range(len(data)):
+			p2 = []
+			if row2 != row:
+				for i in currSet:
+					p2.append(data[row2][i])
+				p2.append(data[row2][j])
+				if dist(p1, p2) < mindist:
+					mindist = dist(p1, p2)
+					classification = data[row2][0]
+		if classification == data[row][0]:
+			correct += 1
+	return correct/instances
+	
+def dist(p1, p2):
+	result = 0
+	
+	#print points
+	#print()
+	#print(p1)
+	#print(p2)
+	
+	for i in range(len(p1)):
+		result += (p2[i] - p1[i]) ** 2
+	return result ** (.5)
 
 #readf takes a list and a file name
 #reads data from the file into the list
