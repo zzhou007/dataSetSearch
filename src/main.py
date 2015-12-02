@@ -88,7 +88,10 @@ def forward(data):
 			#cannot add the same feature twice
 			if j not in currSet:
 				#get accuracy
-				v = validation(data, currSet, j)
+				tmpSet = []
+				tmpSet += currSet
+				tmpSet.append(j)
+				v = validation(data, tmpSet)
 				print ("""checking set {} with feature {}. 
 					Accuracy is {}%""".format(currSet, j, v*100))
 				if v > best:
@@ -109,19 +112,67 @@ def forward(data):
 		print("""The set {} has the overall best accuracy at {}% so far.""".format(theset, theone * 100))
 		print()
 
-def backward(data): 
+def backward(data):
+	#the one to print 
+	theone = 0
+	#the set to print 
+	theset = []
 	#size of the tree
 	treesize = len(data[1]) - 1
-	#to hold removed features
-	remSet = []
-	
+	#to hold current features
+	k = 1
+	#current set of features 
+	currSet = []
+	while k <= len(data[1]) - 1:
+		currSet.append(k)
+		k += 1
+	#features starts at 1
+	i = treesize
+	prevAcc = 0
+	while i >  1:
+		#print level
+		print("I am on the {}th level".format(i))
+		#for best accuracy at this level 
+		best = 0
+		#for feature with best accuracy
+		toRem = 0
+		j = treesize
+		while j >= 1:
+			#cannot add the same feature twice
+			if j in currSet:
+				#get accuracy
+				tmpSet = []
+				tmpSet += currSet
+				tmpSet.pop(tmpSet.index(j))
+				v = validation(data, tmpSet)
+				print ("""checking set {} removing feature {}. 
+					Accuracy is {}%""".format(currSet, j, v*100))
+				if v > best:
+					best = v
+					toRem= j
+			j -= 1
+		#set the one and the set
+		print("""Removing feature {} has best accuracy at {}""".format(toRem, best))
+		if prevAcc > best and i != 10:
+			print("""Warning accuracy has decreased, continuing in case of local maxima""")
+		prevAcc = best
+		currSet.pop(currSet.index(toRem))
+		if theone < best:
+			theone = best
+			theset = []
+			theset += currSet
+		i -= 1
+		print("""The set {} has the overall best accuracy at {}% so far.""".format(theset, theone * 100))
+		print()
+		
+
 				
 def special(data):
 	pass
 			
 #input data list, the features already added and the new feature to test
 #returns the accuracy of the data
-def validation(data, currSet, j):
+def validation(data, currSet):
 	correct = 0
 	instances = len(data)
 	
@@ -132,7 +183,6 @@ def validation(data, currSet, j):
 		#make data point
 		for i in currSet:
 			p1.append(data[row][i])
-		p1.append(data[row][j])
 		#test with all other data points
 		mindist = sys.maxsize
 		for row2 in range(len(data)):
@@ -140,14 +190,14 @@ def validation(data, currSet, j):
 			if row2 != row:
 				for i in currSet:
 					p2.append(data[row2][i])
-				p2.append(data[row2][j])
 				if dist(p1, p2) < mindist:
 					mindist = dist(p1, p2)
 					classification = data[row2][0]
 		if classification == data[row][0]:
 			correct += 1
 	return correct/instances
-	
+
+#returns distance between point 1 and point 2
 def dist(p1, p2):
 	result = 0
 	
