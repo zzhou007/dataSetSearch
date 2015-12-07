@@ -168,7 +168,64 @@ def backward(data):
 
 				
 def special(data):
-	pass
+	#the one to print 
+	theone = 0
+	#the set to print 
+	theset = []
+	#size of the tree
+	treesize = len(data[1]) - 1
+	#to hold current features
+	currSet = []
+	#removed set
+	removed = []
+	#features starts at 1
+	i = 1
+	prevAcc = 0
+	while i <=  treesize:
+		#print level
+		print("I am on the {}th level".format(i))
+		#for best accuracy at this level 
+		best = 0
+		#for feature with best accuracy
+		toAdd = 0
+		#for the worst accuracy
+		worst = sys.maxsize
+		j = 1
+		#to remove the feature
+		toRem = 0
+		while j <= treesize:
+			#cannot add the same feature twice
+			if j not in currSet and j not in removed:
+				#get accuracy
+				tmpSet = []
+				tmpSet += currSet
+				tmpSet.append(j)
+				v = validation(data, tmpSet)
+				print ("""checking set {} with feature {}. 
+					Accuracy is {}%""".format(currSet, j, v*100))
+				if v > best:
+					best = v
+					toAdd = j
+				if v < worst:
+					worst = v
+					toRem = j
+			j += 1
+		#set the one and the set
+		print("""Feature set {} has best accuracy at {}""".format(toAdd, best))
+		if prevAcc > best and i != 10:
+			print("""Warning accuracy has decreased, continuing in case of local maxima""")
+		prevAcc = best
+		currSet.append(toAdd)
+		removed.append(toRem)
+		if theone < best:
+			theone = best
+			theset.clear()
+			theset += currSet
+		i += 1
+		print("""The set {} has the overall best accuracy at {}% so far.""".format(theset, theone * 100))
+		print()
+
+
 			
 #input data list, the features already added and the new feature to test
 #returns the accuracy of the data
