@@ -1,0 +1,166 @@
+Welcome to Zi Zhou Feature Seletion Algorithm
+	Type in the name of the file to test: Type the number of the algorithm you want to run.
+
+	1) Forward Selection
+	2) Backward Elimination
+	3) Zi's Special Algorithm
+	Please wait while I normalize the numbers ...
+Done
+The data has 
+	10 features (not including class attribute
+	100 instances 
+I am on the 1th level
+checking set [] with feature 1. 
+					Accuracy is 79.0%
+checking set [] with feature 2. 
+					Accuracy is 71.0%
+checking set [] with feature 3. 
+					Accuracy is 79.0%
+checking set [] with feature 4. 
+					Accuracy is 78.0%
+checking set [] with feature 5. 
+					Accuracy is 71.0%
+checking set [] with feature 6. 
+					Accuracy is 71.0%
+checking set [] with feature 7. 
+					Accuracy is 81.0%
+checking set [] with feature 8. 
+					Accuracy is 72.0%
+checking set [] with feature 9. 
+					Accuracy is 79.0%
+checking set [] with feature 10. 
+					Accuracy is 74.0%
+Feature set 7 has best accuracy at 0.81
+The set [7] has the overall best accuracy at 81.0% so far.
+
+I am on the 2th level
+checking set [7] with feature 1. 
+					Accuracy is 82.0%
+checking set [7] with feature 2. 
+					Accuracy is 80.0%
+checking set [7] with feature 3. 
+					Accuracy is 81.0%
+checking set [7] with feature 4. 
+					Accuracy is 77.0%
+checking set [7] with feature 5. 
+					Accuracy is 81.0%
+checking set [7] with feature 6. 
+					Accuracy is 76.0%
+checking set [7] with feature 8. 
+					Accuracy is 79.0%
+checking set [7] with feature 9. 
+					Accuracy is 83.0%
+checking set [7] with feature 10. 
+					Accuracy is 77.0%
+Feature set 9 has best accuracy at 0.83
+The set [7, 9] has the overall best accuracy at 83.0% so far.
+
+I am on the 3th level
+checking set [7, 9] with feature 1. 
+					Accuracy is 84.0%
+checking set [7, 9] with feature 2. 
+					Accuracy is 82.0%
+checking set [7, 9] with feature 3. 
+					Accuracy is 79.0%
+checking set [7, 9] with feature 4. 
+					Accuracy is 77.0%
+checking set [7, 9] with feature 5. 
+					Accuracy is 85.0%
+checking set [7, 9] with feature 6. 
+					Accuracy is 88.0%
+checking set [7, 9] with feature 8. 
+					Accuracy is 79.0%
+checking set [7, 9] with feature 10. 
+					Accuracy is 80.0%
+Feature set 6 has best accuracy at 0.88
+The set [7, 9, 6] has the overall best accuracy at 88.0% so far.
+
+I am on the 4th level
+checking set [7, 9, 6] with feature 1. 
+					Accuracy is 83.0%
+checking set [7, 9, 6] with feature 2. 
+					Accuracy is 80.0%
+checking set [7, 9, 6] with feature 3. 
+					Accuracy is 78.0%
+checking set [7, 9, 6] with feature 4. 
+					Accuracy is 72.0%
+checking set [7, 9, 6] with feature 5. 
+					Accuracy is 83.0%
+checking set [7, 9, 6] with feature 8. 
+					Accuracy is 84.0%
+checking set [7, 9, 6] with feature 10. 
+					Accuracy is 83.0%
+Feature set 8 has best accuracy at 0.84
+Warning accuracy has decreased, continuing in case of local maxima
+The set [7, 9, 6] has the overall best accuracy at 88.0% so far.
+
+I am on the 5th level
+checking set [7, 9, 6, 8] with feature 1. 
+					Accuracy is 78.0%
+checking set [7, 9, 6, 8] with feature 2. 
+					Accuracy is 81.0%
+checking set [7, 9, 6, 8] with feature 3. 
+					Accuracy is 78.0%
+checking set [7, 9, 6, 8] with feature 4. 
+					Accuracy is 79.0%
+checking set [7, 9, 6, 8] with feature 5. 
+					Accuracy is 80.0%
+checking set [7, 9, 6, 8] with feature 10. 
+					Accuracy is 79.0%
+Feature set 2 has best accuracy at 0.81
+Warning accuracy has decreased, continuing in case of local maxima
+The set [7, 9, 6] has the overall best accuracy at 88.0% so far.
+
+I am on the 6th level
+checking set [7, 9, 6, 8, 2] with feature 1. 
+					Accuracy is 74.0%
+checking set [7, 9, 6, 8, 2] with feature 3. 
+					Accuracy is 77.0%
+checking set [7, 9, 6, 8, 2] with feature 4. 
+					Accuracy is 77.0%
+checking set [7, 9, 6, 8, 2] with feature 5. 
+					Accuracy is 77.0%
+checking set [7, 9, 6, 8, 2] with feature 10. 
+					Accuracy is 80.0%
+Feature set 10 has best accuracy at 0.8
+Warning accuracy has decreased, continuing in case of local maxima
+The set [7, 9, 6] has the overall best accuracy at 88.0% so far.
+
+I am on the 7th level
+checking set [7, 9, 6, 8, 2, 10] with feature 1. 
+					Accuracy is 77.0%
+checking set [7, 9, 6, 8, 2, 10] with feature 3. 
+					Accuracy is 76.0%
+checking set [7, 9, 6, 8, 2, 10] with feature 4. 
+					Accuracy is 77.0%
+checking set [7, 9, 6, 8, 2, 10] with feature 5. 
+					Accuracy is 77.0%
+Feature set 1 has best accuracy at 0.77
+Warning accuracy has decreased, continuing in case of local maxima
+The set [7, 9, 6] has the overall best accuracy at 88.0% so far.
+
+I am on the 8th level
+checking set [7, 9, 6, 8, 2, 10, 1] with feature 3. 
+					Accuracy is 73.0%
+checking set [7, 9, 6, 8, 2, 10, 1] with feature 4. 
+					Accuracy is 77.0%
+checking set [7, 9, 6, 8, 2, 10, 1] with feature 5. 
+					Accuracy is 78.0%
+Feature set 5 has best accuracy at 0.78
+The set [7, 9, 6] has the overall best accuracy at 88.0% so far.
+
+I am on the 9th level
+checking set [7, 9, 6, 8, 2, 10, 1, 5] with feature 3. 
+					Accuracy is 70.0%
+checking set [7, 9, 6, 8, 2, 10, 1, 5] with feature 4. 
+					Accuracy is 74.0%
+Feature set 4 has best accuracy at 0.74
+Warning accuracy has decreased, continuing in case of local maxima
+The set [7, 9, 6] has the overall best accuracy at 88.0% so far.
+
+I am on the 10th level
+checking set [7, 9, 6, 8, 2, 10, 1, 5, 4] with feature 3. 
+					Accuracy is 73.0%
+Feature set 3 has best accuracy at 0.73
+The set [7, 9, 6] has the overall best accuracy at 88.0% so far.
+
